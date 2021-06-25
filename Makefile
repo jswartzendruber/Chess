@@ -3,7 +3,7 @@ CFLAGS = -Wall
 
 EXECUTABLE_NAME = chess
 
-OBJS = main.o
+OBJS = main.o board.o fen.o
 OBJDIR = obj
 SRCDIR = src
 
