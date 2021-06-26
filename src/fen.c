@@ -1,7 +1,7 @@
 #include "board.h"
 #include "stdio.h"
+#include "stdlib.h"
 #include "string.h"
-#include <stdlib.h>
 
 Board fenToBoard(char fenString[], size_t size) {
     Board board;
@@ -14,40 +14,32 @@ Board fenToBoard(char fenString[], size_t size) {
     char *pieces = malloc(100);
     strcpy(pieces, strSplitPtr);
 
-    printf("pieces: %s\n", pieces);
-
-    // Save info from the fenString
-    int strSplitCount = 0;
-    while (strSplitPtr != NULL) {
-        char *temp = malloc(100);
-        temp = strSplitPtr;
-
-        switch (strSplitCount) {
-        // Assign turn
-        case 1:
-            if (temp[0] == 'w') {
-                board.whitesTurn = 1;
-            } else {
-                board.whitesTurn = 0;
-            }
-            break;
-        // case 2: castle
-        case 3:
-            strcpy(board.enPassantTargetSquare, temp);
-            break;
-        case 4:
-            board.halfmoveClock = strtol(temp, NULL, 10);
-            break;
-        case 5:
-            board.fullmoves = strtol(temp, NULL, 10);
-            break;
-        }
-
-        strSplitPtr = strtok(NULL, delim);
-        strSplitCount++;
+    // Initialize board to blank
+    for (int i = 0; i < 64; i++) {
+        board.squares[i] = ' ';
     }
 
-    printf("whitemove: %i\n", board.whitesTurn);
+    // FEN Pieces to board
+    int piecesIdx = 0;
+    int boardIdx = 0;
+
+    while (boardIdx < 64) {
+        // If letter, add to board
+        if ((pieces[piecesIdx] > 64 && pieces[piecesIdx] < 91) ||
+            (pieces[piecesIdx] > 96 && pieces[piecesIdx] < 123)) {
+
+            board.squares[boardIdx] = pieces[piecesIdx];
+            boardIdx++;
+        }
+
+        // If number, skip x spaces
+        if (pieces[piecesIdx] > 47 && pieces[piecesIdx] < 58) {
+            boardIdx += pieces[piecesIdx] - '0';
+            piecesIdx++;
+        } else {
+            piecesIdx++;
+        }
+    }
 
     return board;
 }
