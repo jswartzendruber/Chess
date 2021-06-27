@@ -8,7 +8,5 @@ int main() {
 
     printBoard(board);
 
-    printf("Size of board: %lu bytes\n", sizeof(board));
-
     return 0;
 }

@@ -28,6 +28,6 @@ void printBoard(Board board) {
            board.squares[58], board.squares[59], board.squares[60], board.squares[61],
            board.squares[62], board.squares[63]);
     printf("+---+-----------------+\n");
-    printf("|   | a b c d e f g h |\n");
+    printf("| X | a b c d e f g h |\n");
     printf("+---+-----------------+\n");
 }

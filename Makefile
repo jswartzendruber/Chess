@@ -4,7 +4,7 @@ CFLAGS = -Wall
 EXECUTABLE_NAME = chess
 
 OBJS = main.o board.o fen.o
-OBJDIR = obj
+OBJDIR = bin
 SRCDIR = src
 
 OBJS_WITH_DIR = $(patsubst %, $(OBJDIR)/%, $(OBJS))
@@ -12,11 +12,11 @@ OBJS_WITH_DIR = $(patsubst %, $(OBJDIR)/%, $(OBJS))
 $(EXECUTABLE_NAME): $(OBJS_WITH_DIR)
 	$(CC) $(CFLAGS) $(OBJS_WITH_DIR) -o $(EXECUTABLE_NAME)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | obj
+$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) $^ -c -o $@
 
 # Create obj file if it does not exist
-obj:
+$(OBJDIR):
 	mkdir -p $@
 
 
