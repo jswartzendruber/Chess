@@ -16,7 +16,7 @@ Board fenToBoard(char fenString[], size_t size) {
 
     // Initialize board to blank
     for (int i = 0; i < 64; i++) {
-        board.squares[i] = ' ';
+        board.squares[i] = '.';
     }
 
     // FEN Pieces to board
