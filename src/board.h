@@ -2,19 +2,17 @@
 #define BOARD_H
 
 typedef struct Board {
-    unsigned int whitesTurn : 1;
+    int whitesTurn;
 
-    unsigned int whiteQueenCastleAvailable : 1;
-    unsigned int whiteKingCastleAvailable : 1;
-    unsigned int blackQueenCastleAvailable : 1;
-    unsigned int blackKingCastleAvailable : 1;
+    int whiteQueenCastleAvailable;
+    int whiteKingCastleAvailable;
+    int blackQueenCastleAvailable;
+    int blackKingCastleAvailable;
 
     char squares[64];
     char enPassantTargetSquare[2];
     int halfmoveClock;
     int fullmoves;
 } Board;
-
-void printBoard(Board);
 
 #endif
