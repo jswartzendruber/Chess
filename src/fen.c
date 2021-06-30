@@ -41,5 +41,8 @@ Board fenToBoard(char fenString[], size_t size) {
         }
     }
 
+    free(fen);
+    free(pieces);
+
     return board;
 }
